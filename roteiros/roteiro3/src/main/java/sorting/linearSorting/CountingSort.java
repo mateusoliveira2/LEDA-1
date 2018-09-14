@@ -14,40 +14,40 @@ public class CountingSort extends AbstractSorting<Integer> {
 	
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
-		Integer counter[] = countOcorrences(array, leftIndex, rightIndex);
-		Integer output[] = Arrays.copyOf(array, array.length);
-		
-        for (int i = 1; i < counter.length; i++) 
-        	counter[i] += counter[i-1];
-       
-        for (int i = leftIndex; i < rightIndex; ++i) { 
-            output[counter[array[i]]-1] = array[i]; 
-            counter[array[i]] --; 
-        } 
-        
-        // Copy the output array to arr, so that arr now 
-        // contains sorted characters 
-        for (int i = leftIndex; i < rightIndex; i++) 
-            array[i] = output[i]; 
-        
+		if(leftIndex < rightIndex && array != null 
+				&& min(array, leftIndex, rightIndex) >= 0){
+			
+			Integer counter[] = createCounterAndSum(array, leftIndex, rightIndex); 
+			dicreaseCountAndSort(array, counter, leftIndex, rightIndex);
+		}
 	}
 	
-	private Integer[] countOcorrences(Integer[] array, int leftIndex, int rightIndex) {
-		Integer count[] = new Integer[max(array, leftIndex, rightIndex)];
-		initArrayZeros(count);
-		
-		for(int i = leftIndex; i < rightIndex; i ++) {
+	private Integer[] createCounterAndSum(Integer[] array, int leftIndex, int rightIndex){
+		Integer count[] = new Integer[max(array, leftIndex, rightIndex) + 1];
+        Arrays.fill(count, 0);
+        
+		for(int i = leftIndex; i <= rightIndex; i ++)
 			count[array[i]] ++;
-		}
+		
+		// accumulative sum
+		for(int i = 1; i < count.length; i++)
+			count[i] += count[i - 1];
 		
 		return count;
 	}
 	
-	private void initArrayZeros(Integer[] array) {
-		for(int i = 0; i < array.length; i++) 
-			array[i] = 0;
+	private void dicreaseCountAndSort(Integer[] array, Integer[] count, int leftIndex, int rightIndex){
 		
+		Integer output[] = new Integer[(rightIndex - leftIndex) + 1] ;
+		for(int i = leftIndex; i <= rightIndex; i++){
+			output[count[array[i]]-1] = array[i];
+			count[array[i]] --;
+		}
+		
+		// Copy output to array in the specified range
+        System.arraycopy(output, 0, array, leftIndex, (rightIndex - leftIndex) + 1);
 	}
+	
 	
 	private Integer max(Integer[] array, int leftIndex, int rightIndex) {
 		Integer max = array[leftIndex];
@@ -57,5 +57,14 @@ public class CountingSort extends AbstractSorting<Integer> {
 		}
 		return max;
 	}
-
+	
+	private Integer min(Integer[] array, int leftIndex, int rightIndex) {
+		Integer min = array[leftIndex];
+		for(int i = leftIndex + 1; i <= rightIndex; i++) {
+			if(array[i] < min)
+				min = array[i];
+		}
+		return min;
+	}
+	
 }
