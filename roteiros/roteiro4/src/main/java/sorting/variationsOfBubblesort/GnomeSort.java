@@ -8,7 +8,7 @@ import util.Util;
  */
 public class GnomeSort<T extends Comparable<T>> extends AbstractSorting<T> {
 	public void sort(T[] array, int leftIndex, int rightIndex) {
-		if(leftIndex < rightIndex && array != null) {
+		if(leftIndex < rightIndex && array != null && leftIndex >= 0 && rightIndex >= 0 && rightIndex < array.length) {
 			int index = leftIndex + 1;
 			
 			while(index <= rightIndex) {

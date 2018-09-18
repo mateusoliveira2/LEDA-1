@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sorting.AbstractSorting;
-import sorting.variationsOfBubblesort.GnomeSort;
+import sorting.variationsOfBubblesort.CombSort;
 
 public class StudentSortingTest {
 
@@ -41,7 +41,7 @@ public class StudentSortingTest {
 	private void getImplementation() {
 		// TODO O aluno deve instanciar sua implementação abaixo ao invés de
 		// null
-		this.implementation = new GnomeSort<Integer>();
+		this.implementation = new CombSort<Integer>();
 	}
 
 	public void populaVetorTamanhoPar(Integer[] arrayPadrao) {
@@ -151,19 +151,6 @@ public class StudentSortingTest {
 		partitionTest(vetorValoresNegativos);
 	}
 	
-
-	@Test
-	public void testSort15() {
-		int qnt = 200000;
-		Integer[] array = new Integer[qnt];
-		for (int i = 0; i < array.length; i++) {
-			array[i] = (int) (Math.random()*qnt);
-		}
-		long inicio = System.currentTimeMillis();
-		implementation.sort(array);
-		long fim = System.currentTimeMillis();
-		System.out.println("Executado em = " + (fim-inicio) + "ms");
-}
 
 	// MÉTODOS QUE OS ALUNOS PODEM CRIAR
 	/**
