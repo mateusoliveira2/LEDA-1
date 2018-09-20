@@ -1,4 +1,4 @@
-package sorting_algorithms;
+package estagio1;
 
 import java.util.Arrays;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package sorting_algorithms;
+package estagio1;
 
 import java.util.ArrayList;
 import java.util.List;
