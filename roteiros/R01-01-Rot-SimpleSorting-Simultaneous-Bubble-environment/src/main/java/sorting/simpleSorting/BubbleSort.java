@@ -9,7 +9,12 @@ import util.Util;
  * sorted.
  */
 public class BubbleSort<T extends Comparable<T>> extends AbstractSorting<T> {
-
+	/**
+	 * 
+	 * @param array - The one who starts our pain
+	 * @param leftIndex - The starting point
+	 * @param rightIndex - The final point
+	 */
 	@Override
 	public void sort(T[] array, int leftIndex, int rightIndex) {
 		

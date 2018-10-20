@@ -11,7 +11,9 @@ import sorting.AbstractSorting;
  * 
  */
 public class CountingSort extends AbstractSorting<Integer> {
-	
+	/**
+	 * 
+	 */
 	@Override
 	public void sort(Integer[] array, int leftIndex, int rightIndex) {
 		if(leftIndex < rightIndex && array != null 
