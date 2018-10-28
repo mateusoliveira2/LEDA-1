@@ -16,9 +16,11 @@ public class SimultaneousBubblesort<T extends Comparable<T>> extends
 		AbstractSorting<T> {
 	public void sort(T[] array, int leftIndex, int rightIndex) {
 		
+		boolean valido = (array.length == 0 || rightIndex > array.length 
+				|| leftIndex < 0 || leftIndex > rightIndex );
+		
 		// avoiding cases that causes an error on the algorithm
-		if (!(array.length == 0 || rightIndex > array.length 
-				|| leftIndex < 0 || leftIndex > rightIndex )) {
+		if (!valido) {
 			
 			for(int i = leftIndex; i <= rightIndex; i ++){
 				for(int j = leftIndex; j < rightIndex; j ++){
